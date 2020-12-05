@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5FB91B52-B5E8-445C-81F7-9B78F6F0C128}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode", "src\puzzle1\AdventOfCode.csproj", "{75A5973F-83D8-4B1A-ADD9-8BC3BC97C729}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode", "src\aoc\AdventOfCode.csproj", "{75A5973F-83D8-4B1A-ADD9-8BC3BC97C729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
