@@ -9,10 +9,10 @@ using Xunit.Abstractions;
 
 namespace AdventOfCode
 {
-    public class Puzzle4
+    public class Puzzle04
     {
         private readonly ITestOutputHelper _output;
-        public Puzzle4(ITestOutputHelper testOutputHelper)
+        public Puzzle04(ITestOutputHelper testOutputHelper)
         {
             _output = testOutputHelper;
         }

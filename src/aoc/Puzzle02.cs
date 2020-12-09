@@ -8,11 +8,11 @@ using Xunit.Abstractions;
 
 namespace AdventOfCode
 {
-    public class Puzzle2
+    public class Puzzle02
     {
         private readonly ITestOutputHelper _output;
 
-        public Puzzle2(ITestOutputHelper testOutputHelper)
+        public Puzzle02(ITestOutputHelper testOutputHelper)
         {
             _output = testOutputHelper;
         }

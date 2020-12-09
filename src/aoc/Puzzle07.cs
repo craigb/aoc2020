@@ -10,14 +10,14 @@ using Xunit.Abstractions;
 
 namespace AdventOfCode
 {
-    public class Puzzle7
+    public class Puzzle07
     {
         private readonly ITestOutputHelper _output;
 
         private readonly Regex _definitionExtractor = new Regex(@"(?<bagDef>\w+ \w+) bags contain");
         private readonly Regex _extractor = new Regex(@"bags contain (?:((?<cardinality>\d+) (?<subBag>\w+ \w+) bag[s,]* ?)*)", RegexOptions.Compiled);
 
-        public Puzzle7(ITestOutputHelper testOutputHelper)
+        public Puzzle07(ITestOutputHelper testOutputHelper)
         {
             _output = testOutputHelper;
         }

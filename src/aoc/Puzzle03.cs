@@ -5,10 +5,10 @@ using Xunit.Abstractions;
 
 namespace AdventOfCode
 {
-    public class Puzzle3
+    public class Puzzle03
     {
         private readonly ITestOutputHelper _output;
-        public Puzzle3(ITestOutputHelper testOutputHelper)
+        public Puzzle03(ITestOutputHelper testOutputHelper)
         {
             _output = testOutputHelper;
         }

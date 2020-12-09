@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace AdventOfCode
 {
-    public class Puzzle1
+    public class Puzzle01
     {
         private ITestOutputHelper _output;
 
@@ -17,7 +17,7 @@ namespace AdventOfCode
                 new object[] { Numbers }
             };
 
-        static Puzzle1()
+        static Puzzle01()
         {
             int[] nums = new int[] {
             1977, 1802, 1856, 1309, 2003, 1854, 1898, 1862, 1857, 542,
@@ -41,13 +41,13 @@ namespace AdventOfCode
             Numbers = nums;
         }
 
-        public Puzzle1(ITestOutputHelper testOutputHelper)
+        public Puzzle01(ITestOutputHelper testOutputHelper)
         {
             _output = testOutputHelper;
         }
 
         [Theory]
-        [MemberData(nameof(Puzzle1.Data))]
+        [MemberData(nameof(Puzzle01.Data))]
         public void FindCorrectProduct(int[] nums)
         {
             if (TryFindPair(nums, 2020, out var pair))
@@ -94,7 +94,7 @@ namespace AdventOfCode
 
 
         [Theory]
-        [MemberData(nameof(Puzzle1.Data))]
+        [MemberData(nameof(Puzzle01.Data))]
         public void FindCorrectTripletProduct(int[] nums)
         {
             var myNums = new int[nums.Length];
