@@ -125,7 +125,7 @@ namespace AdventOfCode
             return count;
         }
 
-        [Theory]
+        //[Theory]
         [InlineData(0, 17*13, 19, 5)]
         [InlineData(119, 17*13, 19, 3)]
         public void RunUnmod(long total, long multiplier, int modulo, int result)
