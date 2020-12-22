@@ -18,26 +18,46 @@ namespace AdventOfCode
             _output = testOutputHelper;
         }
 
-        public IEnumerable<object[]> GetMasks(int toy = 0)
+        public static IEnumerable<object[]> GetMasks()
         {
-            var args = toy switch
-            {
-                _ => new object[] { File.ReadAllLines("Data/14_masks.txt") },
-            };
-
-            yield return args;
+            yield return new object[] { GetToyExample(), 165L };
+            yield return new object[] { File.ReadAllLines("Data/14_masks.txt") };
         }
 
-        class Memory
+        public static string[] GetToyExample()
         {
-            Dictionary<long, long> AddressSpace;
+            return @"mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
+mem[8] = 11
+mem[7] = 101
+mem[8] = 0".Split("\r\n");
+        }
+
+        [Theory]
+        [MemberData(nameof(GetMasks))]
+        public void RunActualPrograms(string[] program, long? expectedSum = default)
+        {
+            Memory memory = new();
+            RunProgram(program, memory);
+            var sum = memory.AddressSpace.Values.Sum();
+            _output.WriteLine($"{sum}");
+
+            if (expectedSum.HasValue)
+            {
+                Assert.Equal(expectedSum, sum);
+            }
+        }
+
+        public class Memory
+        {
+            public Dictionary<long, long> AddressSpace = new Dictionary<long, long>();
         }
         
-        public void ParseMask(Span<char> mask, ref long andMask, ref long orMask)
+        public void ParseMask(ReadOnlySpan<char> mask, ref long andMask, ref long orMask)
         {
             andMask = 0;
             orMask = 0;
-            for (int i = 0; i < 36; ++i)
+            var maskLength = mask.Length;
+            for (int i = 0; i < maskLength; ++i)
             {
                 andMask <<= 1;
                 orMask <<= 1;
@@ -51,7 +71,7 @@ namespace AdventOfCode
             }
         }
 
-        public void RunCommand(Span<char> command, Memory memory, ref long andMask, ref long orMask)
+         void RunCommand(ReadOnlySpan<char> command, Memory memory, ref long andMask, ref long orMask)
         {
             if (command.StartsWith("mask"))
             {
@@ -59,17 +79,25 @@ namespace AdventOfCode
             }
             else
             {
-                
+                var preIndex = command.IndexOf('[') + 1;
+                var postIndex = command.IndexOf(']');
+                var equalIndex = command.IndexOf('=') + 2;
+
+                var index = long.Parse(command[preIndex..postIndex]);
+                var unmaskedValue = long.Parse(command[equalIndex..^0]);
+
+                memory.AddressSpace[index] = unmaskedValue & andMask | orMask;
             }
         }
 
         public void RunProgram(string[] program, Memory memory)
         {
             var numCommands = program.Length;
+            long andMask = 0;
+            long orMask = 0;
             for (int i = 0; i < numCommands; ++i)
             {
-                var command = program[i].Split;
-
+                RunCommand(program[i].AsSpan(), memory, ref andMask, ref orMask);
             }
         }
     }
